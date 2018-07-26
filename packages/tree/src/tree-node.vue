@@ -30,7 +30,9 @@
         @click.stop="handleExpandIconClick"
         :class="{ 'is-leaf': node.isLeaf, expanded: !node.isLeaf && expanded }">
       </span> -->
-      <icon-content :node="node"></icon-content>
+      <span @click.stop="handleExpandIconClick">
+        <icon-content :node="node"></icon-content>
+      </span>
       <el-checkbox
         v-if="showCheckbox"
         v-model="node.checked"
@@ -113,13 +115,10 @@
           return (
             parent.renderIconContent
               ? parent.renderIconContent.call(parent._renderProxy, h, { _self: tree.$vnode.context, node, data, store })
-              : <span
-                  class={['el-tree-node__expand-icon', 'el-icon-caret-right', {
-                    'is-leaf': node.isLeaf,
-                    expanded: !node.isLeaf && parent.expanded 
-                  }]}
-                  on-click={parent.handleExpandIconClick}>
-                </span>
+              : <span class={['el-tree-node__expand-icon', 'el-icon-caret-right', {
+                  'is-leaf': node.isLeaf,
+                  expanded: !node.isLeaf && parent.expanded 
+                }]}></span>
           );
         }
       },
