@@ -73,6 +73,7 @@ export default {
       goto: '前往',
       pagesize: '条/页',
       total: '共 {total} 条',
+      count: '共 {count} 页',
       pageClassifier: '页'
     },
     messagebox: {
@@ -95,7 +96,7 @@ export default {
       sumText: '合计'
     },
     tree: {
-      emptyText: '暂无数据'
+      emptyText: '加载中'
     },
     transfer: {
       noMatch: '无匹配数据',

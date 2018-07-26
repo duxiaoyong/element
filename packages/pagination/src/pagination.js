@@ -25,7 +25,7 @@ export default {
       validator(value) {
         return (value | 0) === value && value > 4 && value < 22 && (value % 2) === 1;
       },
-      default: 7
+      default: 11
     },
 
     currentPage: {
@@ -296,7 +296,7 @@ export default {
       render(h) {
         return (
           typeof this.$parent.total === 'number'
-            ? <span class="el-pagination__total">{ this.t('el.pagination.total', { total: this.$parent.total }) }</span>
+            ? <span class="el-pagination__total">{ this.t('el.pagination.total', { total: this.$parent.total }) }/{ this.t('el.pagination.count', { count: this.$parent.internalPageCount }) }</span>
             : ''
         );
       }

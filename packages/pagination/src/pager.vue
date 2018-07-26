@@ -16,7 +16,7 @@
       :key="pager"
       :class="{ active: currentPage === pager, disabled }"
       class="number">{{ pager }}</li>
-    <li
+    <!-- <li
       class="el-icon more btn-quicknext"
       :class="[quicknextIconClass, { disabled }]"
       v-if="showNextMore"
@@ -26,7 +26,7 @@
     <li
       :class="{ active: currentPage === pageCount, disabled }"
       class="number"
-      v-if="pageCount > 1">{{ pageCount }}</li>
+      v-if="pageCount > 1">{{ pageCount }}</li> -->
   </ul>
 </template>
 
@@ -124,8 +124,8 @@
         const array = [];
 
         if (showPrevMore && !showNextMore) {
-          const startPage = pageCount - (pagerCount - 2);
-          for (let i = startPage; i < pageCount; i++) {
+          const startPage = pageCount - (pagerCount - 1);
+          for (let i = startPage; i <= pageCount; i++) {
             array.push(i);
           }
         } else if (!showPrevMore && showNextMore) {
@@ -138,7 +138,7 @@
             array.push(i);
           }
         } else {
-          for (let i = 2; i < pageCount; i++) {
+          for (let i = 2; i <= pageCount; i++) {
             array.push(i);
           }
         }

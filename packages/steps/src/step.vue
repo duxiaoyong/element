@@ -24,7 +24,7 @@
           v-if="currentStatus !== 'success' && currentStatus !== 'error'"
           name="icon">
           <i v-if="icon" class="el-step__icon-inner" :class="[icon]"></i>
-          <div class="el-step__icon-inner" v-if="!icon && !isSimple">{{ index + 1 }}</div>
+          <div class="el-step__icon-inner" v-if="!icon && !isSimple">{{ cindex ? cindex : index + 1 }}</div>
         </slot>
         <i
           v-else
@@ -61,7 +61,8 @@ export default {
     title: String,
     icon: String,
     description: String,
-    status: String
+    status: String,
+    cindex: String
   },
 
   data() {
