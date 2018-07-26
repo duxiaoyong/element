@@ -15,6 +15,7 @@
       :props="props"
       :render-after-expand="renderAfterExpand"
       :key="getNodeKey(child)"
+      :render-icon-content="renderIconContent"
       :render-content="renderContent"
       @node-expand="handleNodeExpand">
     </el-tree-node>
@@ -94,6 +95,7 @@
       },
       defaultCheckedKeys: Array,
       defaultExpandedKeys: Array,
+      renderIconContent: Function,
       renderContent: Function,
       showCheckbox: {
         type: Boolean,

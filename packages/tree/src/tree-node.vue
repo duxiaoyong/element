@@ -25,11 +25,12 @@
   >
     <div class="el-tree-node__content"
       :style="{ 'padding-left': (node.level - 1) * tree.indent + 'px' }">
-      <span
+      <!-- <span
         class="el-tree-node__expand-icon el-icon-caret-right"
         @click.stop="handleExpandIconClick"
         :class="{ 'is-leaf': node.isLeaf, expanded: !node.isLeaf && expanded }">
-      </span>
+      </span> -->
+      <icon-content :node="node"></icon-content>
       <el-checkbox
         v-if="showCheckbox"
         v-model="node.checked"
@@ -54,6 +55,7 @@
         :aria-expanded="expanded"
       >
         <el-tree-node
+          :render-icon-content="renderIconContent"
           :render-content="renderContent"
           v-for="child in node.childNodes"
           :render-after-expand="renderAfterExpand"
@@ -86,6 +88,7 @@
         }
       },
       props: {},
+      renderIconContent: Function,
       renderContent: Function,
       renderAfterExpand: {
         type: Boolean,
@@ -96,6 +99,30 @@
     components: {
       ElCollapseTransition,
       ElCheckbox,
+      IconContent: {
+        props: {
+          node: {
+            required: true
+          }
+        },
+        render(h) {
+          const parent = this.$parent;
+          const tree = parent.tree;
+          const node = this.node;
+          const { data, store } = node;
+          return (
+            parent.renderIconContent
+              ? parent.renderIconContent.call(parent._renderProxy, h, { _self: tree.$vnode.context, node, data, store })
+              : <span
+                  class={['el-tree-node__expand-icon', 'el-icon-caret-right', {
+                    'is-leaf': node.isLeaf,
+                    expanded: !node.isLeaf && parent.expanded 
+                  }]}
+                  on-click={parent.handleExpandIconClick}>
+                </span>
+          );
+        }
+      },
       NodeContent: {
         props: {
           node: {
