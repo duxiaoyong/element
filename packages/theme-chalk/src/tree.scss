@@ -56,7 +56,7 @@
     height: 26px;
     cursor: pointer;
 
-    .el-tree-node__expand-icon {
+    & > .el-tree-node__expand-icon {
       padding: 6px;
     }
     & > .el-checkbox {
